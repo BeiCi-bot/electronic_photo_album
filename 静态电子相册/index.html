@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <meta name="description" content="一份被光照亮的生日相册。点击照片，开启回忆。">
+  <title>把今天，收藏成光 · 生日相册</title>
+
+  <!-- 本地图标，避免额外网络请求 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0a0c'/%3E%3Ccircle cx='16' cy='14' r='6' fill='none' stroke='%23d9b36c' stroke-width='1.6'/%3E%3Cpath d='M16 22v5M13 27h6' stroke='%23d9b36c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#gallery">跳到相册</a>
+
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <!-- ==================== 页头 ==================== -->
+  <header class="hero">
+    <p class="hero__kicker">
+      <span class="hero__kicker-line" aria-hidden="true"></span>
+      <span>HAPPY&nbsp;&nbsp;BIRTHDAY</span>
+      <span class="hero__kicker-line" aria-hidden="true"></span>
+    </p>
+    <h1 class="hero__title">把今天，<em>收藏成光</em></h1>
+    <p class="hero__desc">
+      <span class="hero__line">一些被光照亮的瞬间，一些想悄悄说给你听的话。</span><span class="hero__line">点开任意一张，慢慢看。</span>
+    </p>
+    <p class="hero__meta">
+      <span id="photo-count">共 9 张照片</span>
+      <span class="hero__dot" aria-hidden="true"></span>
+      <span>点击照片，开启回忆</span>
+    </p>
+  </header>
+
+  <!-- ==================== 相册网格 ==================== -->
+  <main class="container" id="gallery">
+    <div class="gallery" id="gallery-grid" aria-label="照片列表"></div>
+
+    <noscript>
+      <p class="notice">
+        这个相册需要启用 JavaScript 才能浏览。请在浏览器设置中允许 JavaScript 后刷新页面。
+      </p>
+    </noscript>
+  </main>
+
+  <!-- ==================== 页脚 ==================== -->
+  <footer class="footer container">
+    <p class="footer__line" aria-hidden="true"></p>
+    <p class="footer__wish">愿你的每一年，都有光可收藏。</p>
+    <p class="footer__small">
+      <span class="footer__dot" aria-hidden="true"></span>
+      静态电子相册 · 2026
+    </p>
+  </footer>
+
+  <!-- ==================== 灯箱 ==================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title" aria-describedby="lb-desc" aria-hidden="true" tabindex="-1">
+    <div class="lightbox__scrim" data-close="true"></div>
+    <img class="lightbox__glow" id="lb-glow" alt="" aria-hidden="true">
+
+    <div class="lightbox__bar">
+      <p class="lightbox__counter" id="lb-counter">01 / 09</p>
+      <p class="lightbox__hint" aria-hidden="true">
+        <kbd>←</kbd><kbd>→</kbd> 切换
+        <span class="lightbox__hint-sep">·</span>
+        <kbd>Esc</kbd> 关闭
+      </p>
+      <button class="lightbox__close" id="lb-close" type="button" aria-label="关闭灯箱">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lightbox__stage" id="lb-stage">
+      <button class="lb-arrow lb-arrow--prev" id="lb-prev" type="button" aria-label="上一张">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+          <path d="M14.5 5l-7 7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="lightbox__frame" id="lb-frame">
+        <span class="lightbox__spinner" id="lb-spinner" aria-hidden="true"></span>
+        <img class="lightbox__img" id="lb-img" alt="" decoding="async" draggable="false">
+      </div>
+
+      <button class="lb-arrow lb-arrow--next" id="lb-next" type="button" aria-label="下一张">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+          <path d="M9.5 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="lightbox__caption">
+      <h2 class="lightbox__title" id="lb-title"></h2>
+      <p class="lightbox__desc" id="lb-desc"></p>
+    </div>
+
+    <p class="sr-only" id="lb-live" aria-live="polite"></p>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
